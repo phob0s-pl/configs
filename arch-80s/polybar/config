@@ -1,0 +1,201 @@
+[colors]
+background-alt = #333
+background = #222222
+
+foreground = #b2b2b2
+foreground-alt = #ee3333
+
+trans = #DA292b2e
+white = #eee
+grey = #444444
+pink = #d75f87
+blue = #4f97d7
+purple = #875faf
+green = #20ad80
+red = #ee3333
+
+[bar/main]
+width = 100%
+height = 26
+radius = 1.0
+fixed-center = true
+monitor = eDP-1
+underline-size = 2
+bottom = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+border-size = 0
+border-color = #131313
+
+module-margin = 2
+
+font-0 = "Ubuntu Mono:style=Regular:pixelsize=16;1"
+font-1 = FontAwesome:pixelsize=13;1
+font-2 = Symbola:pixelsize=13;1
+modules-left = i3
+modules-right = cpu memory volume battery xkeyboard date
+modules-center = music
+
+tray-position = right
+tray-transparent = false
+tray-background = ${colors.background}
+tray-padding = 4
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+strip-wsnumbers = true
+wrapping-scroll = false
+
+label-mode-padding = 2
+label-mode-foreground = ${colors.red}
+label-mode-background = ${colors.background}
+
+; focused = Active workspace on focused monitor
+label-focused = %{T2}%name%%{T-}
+label-focused-foreground = ${colors.foreground}
+label-focused-background = ${colors.background}
+label-focused-underline = ${colors.pink}
+label-focused-padding = 1
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused =%{T2}%name%%{T-} 
+label-unfocused-padding = 1
+label-unfocused-foreground = ${colors.foreground}
+
+; visible = Active workspace on unfocused monitor
+label-visible = %{T2}%name%%{T-}
+label-visible-background = ${colors.background}
+label-visible-foreground = ${colors.foreground}
+label-visible-padding = 1
+
+; urgent = Workspace with urgency hint set
+label-urgent = %{T2}%icon%%{T-}
+label-urgent-background = ${colors.background}
+label-urgent-foreground = ${colors.foreground}
+label-urgent-padding = 1
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = " "
+format-prefix-font = 1
+format-prefix-foreground = ${colors.foreground}
+format-prefix-background = ${colors.background}
+format-prefix-underline = ${colors.pink}
+
+label-layout = %layout%
+label-layout-font = 1
+label-layout-foreground = ${colors.foreground}
+label-layout-background = ${colors.background}
+label-layout-underline = ${colors.pink}
+; label-indicator-padding = 2
+; label-indicator-margin = 1
+
+[module/date]
+type = internal/date
+interval = 1
+date = "%Y-%m-%d"
+time= %H:%M:%S
+label = %date% %time%
+label-foreground = ${colors.foreground}
+label-background = ${colors.background}
+label-underline = ${colors.purple}
+
+[module/cpu]
+type = internal/cpu
+interval = 3
+format-prefix = %{T1} %{T-}
+format-prefix-font = 2
+format-prefix-foreground = ${colors.foreground}
+format-prefix-background = ${colors.background}
+format-prefix-underline = ${colors.pink}
+label = %percentage%%
+label-font = 2
+label-foreground = ${colors.foreground}
+label-background = ${colors.background}
+label-underline = ${colors.pink}
+
+[module/memory]
+type = internal/memory
+interval = 3
+format-prefix = %{T1} %{T-}
+
+format-prefix-foreground = ${colors.foreground}
+format-prefix-background = ${colors.background}
+format-prefix-underline = ${colors.purple}
+
+label = %percentage_used%% 
+label-foreground = ${colors.foreground}
+label-background = ${colors.background}
+label-underline = ${colors.purple}
+
+[module/music]
+type = custom/script
+interval = 1
+
+label = %output:0:45:...%
+exec = ~/.bin/polybar_music
+
+format = <label>
+format-font = 4
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
+format-underline = ${colors.blue}
+
+[module/volume]
+type = internal/volume
+
+format-volume = <label-volume>
+format-muted-foreground = ${colors.foreground-alt}
+label-volume-underline = ${colors.blue}
+label-muted-underline = ${colors.blue}
+label-volume = %{T4}🔊%{T-} %percentage%%
+label-muted = %{T4}🔇%{T-}
+
+[module/battery]
+interval = 5
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 100
+
+format-charging = <animation-charging><label-charging>
+format-charging-foreground = ${colors.foreground}
+format-charging-background = ${colors.background}
+format-discharging = <ramp-capacity><label-discharging>
+format-discharging-foreground = ${colors.foreground}
+format-discharging-background = ${colors.background}
+format-full = <label-full>
+format-full-foreground = ${colors.foreground}
+format-full-background = ${colors.background}
+
+ramp-capacity-0 = %{T1}%{T-}
+ramp-capacity-1 = %{T1}%{T-}
+ramp-capacity-2 = %{T1}%{T-}
+ramp-capacity-3 = %{T1}%{T-}
+ramp-capacity-4 = %{T1}%{T-}
+ramp-capacity-underline = ${colors.green}
+
+animation-charging-0 = %{T1}%{T-}
+animation-charging-1 = %{T1}%{T-}
+animation-charging-2 = %{T1}%{T-}
+animation-charging-3 = %{T1}%{T-}
+animation-charging-4 = %{T1}%{T-}
+animation-charging-underline = ${colors.green}
+
+; Framerate in milliseconds
+animation-charging-framerate = 750
+
+
+label-charging = " %percentage%% %time%"
+label-charging-underline = ${colors.green}
+
+label-discharging = " %percentage%% %time%"
+label-discharging-underline = ${colors.green}
+
+label-full = %{T1} %percentage%% %time%%{T-}
+label-full-underline = ${colors.green}
