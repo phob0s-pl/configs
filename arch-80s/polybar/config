@@ -34,7 +34,7 @@ font-0 = "Ubuntu Mono:style=Regular:pixelsize=16;1"
 font-1 = FontAwesome:pixelsize=13;1
 font-2 = Symbola:pixelsize=13;1
 modules-left = i3
-modules-right = cpu memory volume battery xkeyboard date
+modules-right = cpu memory volume filesystem battery backlight xkeyboard date
 modules-center = music
 
 tray-position = right
@@ -76,6 +76,15 @@ label-urgent = %{T2}%icon%%{T-}
 label-urgent-background = ${colors.background}
 label-urgent-foreground = ${colors.foreground}
 label-urgent-padding = 1
+
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+format = <label>
+label = %{T1} %percentage%%%{T-}
+label-foreground = ${colors.foreground}
+label-background = ${colors.background}
+label-underline = ${colors.white}
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -199,3 +208,12 @@ label-discharging-underline = ${colors.green}
 
 label-full = %{T1} %percentage%% %time%%{T-}
 label-full-underline = ${colors.green}
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+mount-0 = /
+label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-mounted-background = ${colors.background}
+label-mounted-foreground = ${colors.foreground}
+label-mounted-underline = ${colors.pink}
