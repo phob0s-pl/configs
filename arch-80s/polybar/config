@@ -35,12 +35,13 @@ font-1 = FontAwesome:pixelsize=13;1
 font-2 = Symbola:pixelsize=13;1
 modules-left = i3
 modules-right = cpu memory volume filesystem battery backlight xkeyboard date
-modules-center = music
+# modules-center = music
+# modules-center-offset = 10
 
 tray-position = right
 tray-transparent = false
 tray-background = ${colors.background}
-tray-padding = 4
+tray-padding = 0
 
 [module/i3]
 type = internal/i3
@@ -108,7 +109,7 @@ label-layout-underline = ${colors.pink}
 type = internal/date
 interval = 1
 date = "%Y-%m-%d"
-time= %H:%M:%S
+time= "%H:%M:%S "
 label = %date% %time%
 label-foreground = ${colors.foreground}
 label-background = ${colors.background}
@@ -206,14 +207,14 @@ label-charging-underline = ${colors.green}
 label-discharging = " %percentage%% %time%"
 label-discharging-underline = ${colors.green}
 
-label-full = %{T1} %percentage%% %time%%{T-}
+label-full = %{T1} %percentage%%%{T-}
 label-full-underline = ${colors.green}
 
 [module/filesystem]
 type = internal/fs
-interval = 25
+interval = 10
 mount-0 = /
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-mounted = %{T1} %percentage_used%%%{T-}
 label-mounted-background = ${colors.background}
 label-mounted-foreground = ${colors.foreground}
 label-mounted-underline = ${colors.pink}
