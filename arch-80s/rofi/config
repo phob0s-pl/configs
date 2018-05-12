@@ -1,3 +1,4 @@
-rofi.theme:             /home/phob0s/.config/rofi/sidebar.rasi
-rofi.show               drun
-rofi.modi               drun,run
+rofi.theme:         synthwave
+rofi.modi:          drun,run
+rofi.lines:         7
+rofi.columns:       1

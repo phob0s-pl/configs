@@ -1,0 +1,82 @@
+* {
+  bg:           #232323;
+  text:         #875faf;
+  text-alt:     @bg;
+  text-alt-bg:  @text;
+  input-text:   #20ad80;
+  spacing: 0;
+  background-color: transparent;
+  text-color: @text;
+  font: "Ubuntu Mono 15";
+}
+
+window {
+  transparency: "real";
+  fullscreen: false;
+  background-color: @bg;
+}
+
+mainbox {
+  padding: 0;
+}
+
+inputbar {
+  text-color: @input-text;
+  margin: 0px 0px 5px 0px;
+  children: [prompt, textbox-prompt-colon, entry, case-indicator];
+}
+
+prompt {
+  font: "Ubuntu Mono 15";
+  text-color: @input-text;
+}
+
+textbox-prompt-colon {
+  expand: false;
+  str: ":";
+  text-color: @text;
+}
+
+entry {
+  margin: 0px 10px;
+}
+
+listview {
+  spacing: 0px;
+  dynamic: true;
+  scrollbar: false;
+}
+
+element {
+  padding: 5px;
+  text-color: @text;
+  highlight: bold #232323;
+  border-radius: 3px;
+}
+
+element selected {
+  background-color: @text-alt-bg;
+  text-color: @text-alt;
+}
+
+element urgent, element selected urgent {
+  text-color: @text;
+}
+
+element active, element selected active {
+  text-color: @text;
+}
+
+message {
+  padding: 5px;
+  border-radius: 3px;
+  background-color: @bg;
+  border: 1px;
+  border-color: @bg;
+}
+
+button selected {
+  padding: 5px;
+  border-radius: 3px;
+  background-color: @bg;
+}
