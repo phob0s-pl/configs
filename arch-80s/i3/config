@@ -156,22 +156,22 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-exec_always --no-startup-id polybar main
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-# bar {
-#         status_command i3status -c /home/phob0s/.config/i3/i3status.conf
-#         strip_workspace_numbers yes
+bar {
+        status_command i3status -c /home/phob0s/.config/i3/i3status.conf
+        strip_workspace_numbers yes
+	    
+        colors {
+		    background #202020
+		    statusline #999999
+		    separator #202020
+		    focused_workspace  #333333 #333333 #ffffff
+		    active_workspace   #333333 #333333 #ffffff
+		    inactive_workspace #13131A #13131A #888888
+	    }
 
-#         colors {
-# 		    background #202020
-# 		    statusline #999999
-# 		    separator #202020
-# 		    focused_workspace  #333333 #333333 #ffffff
-# 		    active_workspace   #333333 #333333 #ffffff
-# 		    inactive_workspace #13131A #13131A #888888
-# 	    }
-# }
+}
 
 ## Style
 # border color
@@ -193,15 +193,14 @@ new_float pixel
 #new_window none
 
 exec --no-startup-id lxsession -e i3 -a
-exec --no-startup-id /usr/bin/nm-applet &
-exec --no-startup-id /usr/bin/blueman-applet &
+exec --no-startup-id /usr/bin/nm-applet
+exec --no-startup-id /usr/bin/blueman-applet
 exec --no-startup-id /usr/bin/compton --config /home/phob0s/.config/compton.conf
-#exec --no-startup-id parcellite &
-#exec --no-startup-id pasystray &
-exec --no-startup-id pgrep redshift || redshift &
+exec --no-startup-id pgrep redshift || redshift-gtk
 exec --no-startup-id thunar --daemon
 exec --no-startup-id xautolock -time 10 -locker /home/phob0s/.bin/i3lockx
-#exec --no-startup-id cbatticon -i symbolic &
+exec --no-startup-id /home/phob0s/.fehbg
+
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
