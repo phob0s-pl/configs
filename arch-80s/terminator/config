@@ -1,0 +1,27 @@
+[global_config]
+  enabled_plugins = TerminatorThemes, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  focus = mouse
+[keybindings]
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_color = "#232323"
+    background_darkness = 0.95
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+    cursor_shape = ibeam
+    font = Ubuntu Mono 16
+    foreground_color = "#33ccee"
+    palette = "#292b2e:#ee3333:#20ad80:#dd75dd:#875faf:#d75f87:#4f97d7:#ececec:#292b2e:#ee3333:#20ad80:#dd75dd:#875faf:#d75f87:#4f97d7:#ececec"
+    scrollback_lines = 10000
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_system_font = False
