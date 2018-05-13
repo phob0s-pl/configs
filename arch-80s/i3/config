@@ -164,11 +164,11 @@ bar {
 	    
         colors {
 		    background #202020
-		    statusline #999999
-		    separator #202020
-		    focused_workspace  #333333 #333333 #ffffff
-		    active_workspace   #333333 #333333 #ffffff
-		    inactive_workspace #13131A #13131A #888888
+		    statusline #875faf
+		    separator #33ccee
+		    focused_workspace  #333333 #333333 #33ccee
+		    active_workspace   #333333 #333333 #33ccee
+		    inactive_workspace #13131A #13131A #875faf
 	    }
 
 }
