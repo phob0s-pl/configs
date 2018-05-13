@@ -31,6 +31,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-unimpaired'
+Plug 'jiangmiao/auto-pairs'
 
 " Vim only plugins
 if !has('nvim')
@@ -380,6 +381,16 @@ au FileType vimwiki set tabstop=4
 " Enable completing of go pointers
 let g:deoplete#sources#go#pointer = 1
 
+
+"----------------------------------------------
+" Plugin: nerdcommenter
+"----------------------------------------------
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
 "----------------------------------------------
 " Language: Golang
 "----------------------------------------------
@@ -538,3 +549,4 @@ au FileType yaml set expandtab
 au FileType yaml set shiftwidth=4
 au FileType yaml set softtabstop=4
 au FileType yaml set tabstop=4
+
