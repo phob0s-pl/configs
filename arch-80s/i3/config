@@ -161,7 +161,7 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status -c /home/phob0s/.config/i3/i3status.conf
         strip_workspace_numbers yes
-	    
+
         colors {
 		    background #202020
 		    statusline #875faf
@@ -203,8 +203,8 @@ exec --no-startup-id /home/phob0s/.fehbg
 
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec light -A 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 10 # decrease screen brightness
 
 #sound
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% #increase sound volume
@@ -226,5 +226,6 @@ for_window [class="Gnome-terminal"] floating enable
 assign [class="^Code$"] $ws2
 assign [class="^Chromium$"] $ws3
 for_window [class="Spotify"] move to workspace $ws4
+
 
 
