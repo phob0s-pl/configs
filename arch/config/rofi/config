@@ -1,0 +1,4 @@
+rofi.theme:         vanced
+rofi.modi:          drun,run
+rofi.lines:         4
+rofi.columns:       1
