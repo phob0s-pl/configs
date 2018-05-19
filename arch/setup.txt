@@ -1,0 +1,5 @@
+# Add to /etc/sudoers
+Defaults    lecture = always
+Defaults    lecture_file = /etc/sudoers.lecture
+
+# gtk theme arc-dark, icons: papirus-dark
