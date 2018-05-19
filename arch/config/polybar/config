@@ -34,7 +34,7 @@ font-0 = "Ubuntu Mono:style=Regular:pixelsize=16;1"
 font-1 = FontAwesome:pixelsize=13;1
 font-2 = Symbola:pixelsize=13;1
 modules-left = i3
-modules-right = cpu memory volume filesystem battery backlight xkeyboard date
+modules-right = cpu memory volume filesystem battery backlight xkeyboard date place
 # modules-center = music
 #modules-center-offset = 110
 
