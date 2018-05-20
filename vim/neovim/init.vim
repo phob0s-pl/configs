@@ -32,6 +32,8 @@ Plug 'tpope/vim-surround'
 Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-unimpaired'
 Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-eunuch'
 
 " Vim only plugins
 if !has('nvim')
@@ -51,12 +53,11 @@ Plug 'zchee/deoplete-jedi'                     " Go auto completion
 Plug 'elzr/vim-json'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'pearofducks/ansible-vim', { 'do': 'cd ./UltiSnips; python2 generate.py' }
-" jinja syntax
 
+" jinja syntax
 Plug 'lepture/vim-jinja'
 
 " solidity syntax
-
 Plug 'tomlion/vim-solidity'
 
 " Colorschemes
@@ -204,6 +205,9 @@ nnoremap <c-h> <c-w><c-h>
 if has('nvim')
     " Enable deoplete on startup
     let g:deoplete#enable_at_startup = 1
+    let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+    let g:deoplete#sources#go#pointer = 1
+    let g:deoplete#auto_complete_start_length = 1
 endif
 
 " Disable deoplete when in multi cursor mode
@@ -333,7 +337,6 @@ let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
 "----------------------------------------------
 " Plugin: scrooloose/nerdtree
 "----------------------------------------------
-nnoremap <leader>d :NERDTreeToggle<cr>
 nnoremap <F2> :NERDTreeToggle<cr>
 
 " Files to ignore
@@ -366,7 +369,7 @@ let g:delve_backend = "native"
 "----------------------------------------------
 " Path to wiki
 let g:vimwiki_list = [{
-        \ 'path': '~/.vimwiki',
+        \ 'path': '/home/phob0s/go/src/gitlab.com/phob0s/vimwiki',
         \ 'syntax': 'markdown',
         \ 'ext': '.vimwiki.markdown'}]
 
@@ -400,20 +403,20 @@ au FileType go set softtabstop=4
 au FileType go set tabstop=4
 
 " Mappings
+au FileType go nmap <F6> <Plug>(go-coverage-toggle)
+au FileType go nmap <F7> :GoDeclsDir<cr>
 au FileType go nmap <F8> :GoMetaLinter<cr>
 au FileType go nmap <F9> :GoCoverageToggle -short<cr>
 au FileType go nmap <F10> :GoTest -short<cr>
 au FileType go nmap <F12> <Plug>(go-def)
-au Filetype go nmap <leader>ga <Plug>(go-alternate-edit)
-au Filetype go nmap <leader>gah <Plug>(go-alternate-split)
-au Filetype go nmap <leader>gav <Plug>(go-alternate-vertical)
-au FileType go nmap <leader>gt :GoDeclsDir<cr>
-au FileType go nmap <leader>gc <Plug>(go-coverage-toggle)
+au Filetype go nmap <leader>t <Plug>(go-alternate-edit)
+au Filetype go nmap <leader>y <Plug>(go-alternate-split)
+au Filetype go nmap <leader>u <Plug>(go-alternate-vertical)
 au FileType go nmap <leader>gd <Plug>(go-def)
-au FileType go nmap <leader>gdv <Plug>(go-def-vertical)
-au FileType go nmap <leader>gdh <Plug>(go-def-split)
-au FileType go nmap <leader>gD <Plug>(go-doc)
-au FileType go nmap <leader>gDv <Plug>(go-doc-vertical)
+au FileType go nmap <leader>gv <Plug>(go-def-vertical)
+au FileType go nmap <leader>gh <Plug>(go-def-split)
+au FileType go nmap <leader>d <Plug>(go-doc)
+au FileType go nmap <leader>dv <Plug>(go-doc-vertical)
 
 " Run goimports when running gofmt
 let g:go_fmt_command = "goimports"
