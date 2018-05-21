@@ -13,6 +13,8 @@ Plug 'godlygeek/tabular'           " This must come before plasticboy/vim-markdo
 Plug 'tpope/vim-rhubarb'           " Depenency for tpope/fugitive
 
 " General plugins
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'bling/vim-airline'
 Plug 'christoomey/vim-tmux-navigator'
@@ -44,7 +46,7 @@ endif
 " Language support
 Plug 'cespare/vim-toml'                        " toml syntax highlighting
 Plug 'fatih/vim-go'                            " Go support
-Plug 'hashivim/vim-terraform'                  " Terraform syntax highlighting
+Plug 'hashivim/vim-hashicorp-tools'            " Hashicorp syntax highlighting
 Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' } " Go auto completion
 Plug 'pangloss/vim-javascript'                 " JavaScript syntax highlighting
 Plug 'plasticboy/vim-markdown'                 " Markdown syntax highlighting
@@ -88,6 +90,7 @@ set number                        " show number ruler
 set relativenumber                " show relative numbers in the ruler
 set ruler
 set formatoptions=tcqronj         " set vims text formatting options
+set noshowmode                    " We show the mode with airline or lightline<Paste>
 set softtabstop=4
 set tabstop=4
 set title                         " let vim set the terminal title
@@ -205,9 +208,9 @@ nnoremap <c-h> <c-w><c-h>
 if has('nvim')
     " Enable deoplete on startup
     let g:deoplete#enable_at_startup = 1
-    let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+    let g:deoplete#sources#go#sort_class = ['var','package', 'func', 'type', 'const']
     let g:deoplete#sources#go#pointer = 1
-    let g:deoplete#auto_complete_start_length = 1
+    let g:deoplete#auto_complete_start_length = 3
 endif
 
 " Disable deoplete when in multi cursor mode
@@ -332,7 +335,8 @@ let g:neomake_error_sign   = {'text': '✖', 'texthl': 'NeomakeErrorSign'}
 let g:neomake_warning_sign = {'text': '∆', 'texthl': 'NeomakeWarningSign'}
 let g:neomake_message_sign = {'text': '➤', 'texthl': 'NeomakeMessageSign'}
 let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
-
+" When writing a buffer (no delay).
+call neomake#configure#automake('w')
 
 "----------------------------------------------
 " Plugin: scrooloose/nerdtree
@@ -383,7 +387,18 @@ au FileType vimwiki set tabstop=4
 "----------------------------------------------
 " Enable completing of go pointers
 let g:deoplete#sources#go#pointer = 1
+inoremap <silent><expr> <M-q>
+                \ pumvisible() ? "\<C-n>" :
+                \ deoplete#mappings#manual_complete()
 
+imap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
 
 "----------------------------------------------
 " Plugin: nerdcommenter
