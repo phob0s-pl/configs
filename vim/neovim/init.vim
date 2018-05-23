@@ -208,9 +208,12 @@ nnoremap <c-h> <c-w><c-h>
 if has('nvim')
     " Enable deoplete on startup
     let g:deoplete#enable_at_startup = 1
-    let g:deoplete#sources#go#sort_class = ['var','package', 'func', 'type', 'const']
+    let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
     let g:deoplete#sources#go#pointer = 1
-    let g:deoplete#auto_complete_start_length = 3
+    let g:deoplete#auto_complete_start_length = 2
+    let g:deoplete#enable_refresh_always = 1
+    let g:deoplete#enable_smart_case = 1
+    let g:deoplete#sources#go#gocode_binary = '/home/phob0s/go/bin/gocode'
 endif
 
 " Disable deoplete when in multi cursor mode
@@ -274,7 +277,6 @@ let g:ctrlp_map = ''
 " Plugin: 'junegunn/fzf.vim'
 "----------------------------------------------
 nnoremap <c-p> :FZF<cr>
-
 
 "----------------------------------------------
 " Plugin: 'majutsushi/tagbar'
@@ -359,6 +361,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " Show hidden files by default.
 let NERDTreeShowHidden = 1
 
+
 " Allow NERDTree to change session root.
 let g:NERDTreeChDirMode = 2
 
@@ -385,8 +388,9 @@ au FileType vimwiki set tabstop=4
 "----------------------------------------------
 " Plugin: zchee/deoplete-go
 "----------------------------------------------
-" Enable completing of go pointers
-let g:deoplete#sources#go#pointer = 1
+let g:deoplete#sources#go#package_dot = 1
+let g:deoplete#sources#go#on_event =1
+
 inoremap <silent><expr> <M-q>
                 \ pumvisible() ? "\<C-n>" :
                 \ deoplete#mappings#manual_complete()
