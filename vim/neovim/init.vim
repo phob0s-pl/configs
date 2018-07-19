@@ -5,6 +5,7 @@
 " instructions:
 " https://github.com/junegunn/vim-plug
 "----------------------------------------------
+set nocompatible
 
 call plug#begin('~/.vim/plugged')
 
@@ -17,7 +18,6 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'bling/vim-airline'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'          " CtrlP is installed to support tag finding in vim-go
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -98,6 +98,8 @@ set updatetime=100                " redraw the status bar often
 set ignorecase
 set smartcase
 set guicursor=n-v-c-sm-i-ci-ve-r-cr-o:ver25
+set nobackup
+set noswapfile
 
 " neovim specific settings
 if has('nvim')
@@ -125,9 +127,6 @@ autocmd BufLeave * silent! :wa
 
 " Remove trailing white spaces on save
 autocmd BufWritePre * :%s/\s\+$//e
-
-" Center the screen quickly
-nnoremap <space> zz
 
 "----------------------------------------------
 " Colors
@@ -197,10 +196,19 @@ nnoremap <leader>h :split<cr>
 nnoremap <leader>q :close<cr>
 
 " move with splits
-nnoremap <c-j> <c-w><c-j>
-nnoremap <c-k> <c-w><c-k>
-nnoremap <c-l> <c-w><c-l>
-nnoremap <c-h> <c-w><c-h>
+nnoremap <silent> <A-j> <c-w><c-j>
+nnoremap <silent> <A-k> <c-w><c-k>
+nnoremap <silent> <A-l> <c-w><c-l>
+nnoremap <silent> <A-h> <c-w><c-h>
+tnoremap <silent> <A-h> <C-\><C-N><C-w>h
+tnoremap <silent> <A-j> <C-\><C-N><C-w>j
+tnoremap <silent> <A-k> <C-\><C-N><C-w>k
+tnoremap <silent> <A-l> <C-\><C-N><C-w>l
+inoremap <silent> <A-h> <C-\><C-N><C-w>h
+inoremap <silent> <A-j> <C-\><C-N><C-w>j
+inoremap <silent> <A-k> <C-\><C-N><C-w>k
+inoremap <silent> <A-l> <C-\><C-N><C-w>l
+
 
 "----------------------------------------------
 " Plugin: Shougo/deoplete.nvim
@@ -256,13 +264,6 @@ endif
 " Tmux vim integration
 let g:tmux_navigator_no_mappings = 1
 let g:tmux_navigator_save_on_switch = 1
-
-" Move between splits with ctrl+h,j,k,l
-nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 
 "----------------------------------------------
 " Plugin: 'ctrlpvim/ctrlp.vim'
@@ -507,6 +508,13 @@ let g:neomake_go_gometalinter_maker = {
   \   '%E%f:%l::%trror: %m,' .
   \   '%W%f:%l::%tarning: %m'
 \ }
+
+
+"----------------------------------------------
+" Terminal
+"----------------------------------------------
+tnoremap <Esc> <C-\><C-n>
+
 
 "----------------------------------------------
 " Language: Markdown
